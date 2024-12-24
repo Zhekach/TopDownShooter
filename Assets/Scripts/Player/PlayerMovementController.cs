@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace Player
@@ -8,6 +9,8 @@ namespace Player
         [SerializeField] private float movementSpeed = 5f; // Скорость перемещения персонажа
 
         private Rigidbody2D _rigidbody;
+        
+        [SerializeField] private TMP_Text _debugInfo;
 
         void Awake()
         {
@@ -36,12 +39,25 @@ namespace Player
             // Получаем ввод от пользователя по осям (WASD или стрелки)
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
-
+            
             // Создаем вектор движения на основе ввода
             Vector2 movement = new Vector2(horizontal, vertical).normalized;
-
-            // Применяем движение к Rigidbody2D
-            _rigidbody.linearVelocity = movement * movementSpeed;
+            
+            //if ((int)movement.magnitude == 1f)
+            if (movement.magnitude > 0.9f)
+            {
+                // Применяем движение к Rigidbody2D
+                _rigidbody.linearVelocity = movement * movementSpeed;
+            }
+            else
+            {
+                // Уменьшаем скорость вручную для борьбы с инерцией
+                _rigidbody.linearVelocity = Vector2.zero;//Vector2.Lerp(_rigidbody.linearVelocity, Vector2.zero, 10f);
+            }
+            
+            _debugInfo.text = $"X: {horizontal}\n" + $"Y: {vertical}\n" +
+                              $"Magnitude: {movement.magnitude}\n" +
+                              $"Velocity: {_rigidbody.linearVelocity}";
         }
 
         // Метод для поворота персонажа в сторону курсора мыши
