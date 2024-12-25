@@ -10,7 +10,7 @@ namespace Player
 
         private Rigidbody2D _rigidbody;
         
-        [SerializeField] private TMP_Text _debugInfo;
+        //[SerializeField] private TMP_Text _debugInfo;
 
         void Awake()
         {
@@ -55,9 +55,9 @@ namespace Player
                 _rigidbody.linearVelocity = Vector2.zero;//Vector2.Lerp(_rigidbody.linearVelocity, Vector2.zero, 10f);
             }
             
-            _debugInfo.text = $"X: {horizontal}\n" + $"Y: {vertical}\n" +
-                              $"Magnitude: {movement.magnitude}\n" +
-                              $"Velocity: {_rigidbody.linearVelocity}";
+            //_debugInfo.text = $"X: {horizontal}\n" + $"Y: {vertical}\n" +
+            //                  $"Magnitude: {movement.magnitude}\n" +
+            //                  $"Velocity: {_rigidbody.linearVelocity}";
         }
 
         // Метод для поворота персонажа в сторону курсора мыши
@@ -73,7 +73,7 @@ namespace Player
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             // Устанавливаем угол поворота для персонажа
-            _rigidbody.rotation = angle;
+            _rigidbody.rotation = angle - 90f;
         }
     }
 }
