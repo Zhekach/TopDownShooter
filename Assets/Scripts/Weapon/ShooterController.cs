@@ -6,10 +6,17 @@ using UnityEngine.Serialization;
 public abstract class ShooterController : MonoBehaviour
 {
     [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private GameObject _firePoint;
+    
     [SerializeField] private float _bulletSpeed = 20f;
     [SerializeField] private float _fireRate = 0.1f;
 
     private float _nextFire;
+
+    private void Awake()
+    {
+        _nextFire = _fireRate;
+    }
 
     protected abstract void Update();
 
@@ -30,7 +37,7 @@ public abstract class ShooterController : MonoBehaviour
             return;
 
         _nextFire = _fireRate;
-        var bullet = Instantiate(_bulletPrefab, transform.position, transform.rotation);
+        var bullet = Instantiate(_bulletPrefab, _firePoint.transform.position, transform.rotation);
         Vector2 direction = new Vector2(
             Mathf.Cos((transform.eulerAngles.z + 90) * Mathf.Deg2Rad),
             Mathf.Sin((transform.eulerAngles.z + 90) * Mathf.Deg2Rad));
