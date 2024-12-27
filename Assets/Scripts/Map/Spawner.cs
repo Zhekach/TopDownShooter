@@ -5,27 +5,22 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject _prefab;
     private GameObject _gameObject;
 
-    private void Awake()
-    {
-        Spawn();
-    }
-
-    public void Respawn()
-    {
-        Destroy(_gameObject);
-        Spawn();
-    }
-
-    private void Spawn()
+    public GameObject Spawn()
     {
         if (_prefab != null)
         {
+            if (_gameObject != null)
+            {
+                Destroy(_gameObject);
+            }
+            
             _gameObject = Instantiate(_prefab);
             _gameObject.transform.position = transform.position;
+            
+            return _gameObject;
         }
-        else
-        {
-            Debug.LogError("No prefab set on spawner.");
-        }
+
+        Debug.LogError("No prefab set on spawner.");
+        return null;
     }
 }
