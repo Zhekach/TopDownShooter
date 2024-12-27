@@ -5,8 +5,7 @@ namespace Player
 {
     public class PlayerMovementController : MonoBehaviour
     {
-        [Header("Movement Settings")]
-        [SerializeField] private float movementSpeed = 5f; // Скорость перемещения персонажа
+        [SerializeField] private float movementSpeed = 5f;
 
         private Rigidbody2D _rigidbody;
         
