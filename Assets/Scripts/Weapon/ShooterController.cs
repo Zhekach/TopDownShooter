@@ -20,15 +20,9 @@ public abstract class ShooterController : MonoBehaviour
 
     protected abstract void Update();
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        if (_nextFire == 0)
-            return;
-
-        _nextFire -= Time.fixedDeltaTime;
-
-        if (_nextFire < 0)
-            _nextFire = 0;
+        CountFireTimer();
     }
 
     protected void Shoot()
@@ -46,5 +40,16 @@ public abstract class ShooterController : MonoBehaviour
         // bullet.GetComponent<Rigidbody2D>().linearVelocity = transform.position.normalized * bulletSpeed;
 
         Destroy(bullet, 5f);
+    }
+
+    private void CountFireTimer()
+    {
+        if (_nextFire == 0)
+            return;
+
+        _nextFire -= Time.fixedDeltaTime;
+
+        if (_nextFire < 0)
+            _nextFire = 0;
     }
 }
