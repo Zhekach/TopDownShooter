@@ -4,31 +4,24 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public BulletBrokerType SourceType { get; private set; }
     public BulletBrokerType DestinationType { get; private set; }
 
     private int _maxRicochets = 2;
 
     public static event Action<Bullet> OnBulletHit;
 
-    public Bullet(BulletBrokerType sourceType)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        SourceType = sourceType;
-        DestinationType = BulletBrokerType.Empty;
-    }
-    
-    public void OnCollisionEnter2D(Collision2D other)
-    {
-        switch (other.gameObject.tag)
+        switch (collision.gameObject.tag)
         {
             case nameof(BulletBrokerType.Player):
                 HandleHit(BulletBrokerType.Player);
-                break;            
+                break;
             case nameof(BulletBrokerType.Enemy):
                 HandleHit(BulletBrokerType.Enemy);
                 break;
             case nameof(BulletBrokerType.Barrier):
-                HandleRicochet();
+                HandleRicochet(collision);
                 break;
         }
     }
@@ -36,18 +29,27 @@ public class Bullet : MonoBehaviour
     private void HandleHit(BulletBrokerType bulletBrokerType)
     {
         DestinationType = bulletBrokerType;
-        OnBulletHit?.Invoke(this); 
+        OnBulletHit?.Invoke(this);
     }
-    
-    private void HandleRicochet()
+
+    private void HandleRicochet(Collision2D collision)
     {
-        
+        if (_maxRicochets <= 0)
+            return;
+
+        _maxRicochets--;
+
+        var rigidbody = GetComponent<Rigidbody2D>();
+        var direction = rigidbody.linearVelocity;
+        var normal = collision.GetContact(0).normal;
+        var newDirection = Vector2.Reflect(direction, normal);
+
+        rigidbody.linearVelocity = newDirection;
     }
 }
 
 public enum BulletBrokerType
 {
-    Empty,
     Player,
     Enemy,
     Barrier
