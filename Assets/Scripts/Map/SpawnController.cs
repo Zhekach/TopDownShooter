@@ -1,5 +1,4 @@
-﻿using System;
-using Enemy;
+﻿using Enemy;
 using UnityEngine;
 
 namespace Map
@@ -31,8 +30,8 @@ namespace Map
             _player = _playerSpawner.Spawn();
             _enemy = _enemySpawner.Spawn();
             
-            var enemyMovementController = _enemy.GetComponent<EnemyMovementController>();
-            enemyMovementController.SetPlayer(_player);
+            var enemy = _enemy.GetComponent<EnemyController>();
+            enemy.Initialize(_player);
         }
     }
 }
