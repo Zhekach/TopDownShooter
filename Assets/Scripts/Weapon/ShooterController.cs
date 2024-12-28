@@ -45,7 +45,5 @@ public abstract class ShooterController
             Mathf.Sin((_parent.transform.eulerAngles.z + 90) * Mathf.Deg2Rad));
 
         bullet.GetComponent<Rigidbody2D>().linearVelocity = direction * _bulletSpeed;
-
-        Object.Destroy(bullet, 5f);
     }
 }
