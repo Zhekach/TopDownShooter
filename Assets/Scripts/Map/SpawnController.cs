@@ -30,8 +30,8 @@ namespace Map
             _player = _playerSpawner.Spawn();
             _enemy = _enemySpawner.Spawn();
             
-            var enemy = _enemy.GetComponent<EnemyController>();
-            enemy.Initialize(_player);
+            var enemyController = _enemy.GetComponent<EnemyController>();
+            enemyController.Initialize(_player);
         }
     }
 }
