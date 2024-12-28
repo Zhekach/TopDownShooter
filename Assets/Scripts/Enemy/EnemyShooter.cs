@@ -9,7 +9,7 @@ namespace Enemy
 
         public EnemyShooter(GameObject player, GameObject parent,
             GameObject bulletPrefab, GameObject firePoint 
-            ) : base(parent, bulletPrefab, firePoint)
+            ) : base(bulletPrefab, firePoint, parent)
         {
             _player = player;
         }

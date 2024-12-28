@@ -1,4 +1,5 @@
 ﻿using Enemy;
+using Player;
 using UnityEngine;
 
 namespace Map
@@ -29,6 +30,9 @@ namespace Map
         {
             _player = _playerSpawner.Spawn();
             _enemy = _enemySpawner.Spawn();
+            
+            var playerController = _player.GetComponent<PlayerController>();
+            playerController.Initialize();
             
             var enemyController = _enemy.GetComponent<EnemyController>();
             enemyController.Initialize(_player);

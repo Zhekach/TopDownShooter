@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -22,12 +21,13 @@ namespace Player
         private void Update()
         {
             _movement.RotateTowardsMouse();
+            _shooter.Shoot();
         }
         
         private void FixedUpdate()
         {
+            _shooter.CountFireTimer();
             _movement.MoveCharacter();
-            _shooter.Shoot();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Player
         
         public PlayerShooter(GameObject parent,
             GameObject bulletPrefab, GameObject firePoint 
-        ) : base(parent, bulletPrefab, firePoint){}
+        ) : base(bulletPrefab, firePoint, parent){}
         
         public override void Shoot()
         {

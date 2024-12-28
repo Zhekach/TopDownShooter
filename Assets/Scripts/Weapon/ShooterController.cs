@@ -6,9 +6,9 @@ public abstract class ShooterController
     private GameObject _firePoint;
     private GameObject _parent;
     
-    private float _bulletSpeed = 20f;
-    private float _fireRate = 0.1f;
-
+    private float _bulletSpeed;
+    private float _fireRate;
+    
     private float _nextFire;
     
     public ShooterController(GameObject bulletPrefab, GameObject firePoint, GameObject parent)
@@ -17,6 +17,9 @@ public abstract class ShooterController
         _firePoint = firePoint;
         _parent = parent;
         _nextFire = _fireRate;
+        var bullet = _bulletPrefab.GetComponent<Bullet>();
+        _bulletSpeed = bullet.Speed;
+        _fireRate = bullet.FireRate;
     }
 
     public virtual void CountFireTimer()

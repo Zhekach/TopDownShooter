@@ -1,12 +1,18 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Bullet : MonoBehaviour
 {
     public BulletBrokerType DestinationType { get; private set; }
 
+    [FormerlySerializedAs("_bulletSpeed")] [SerializeField] private float _speed;
+    [SerializeField] private float _fireRate;
     private int _maxRicochets = 2;
+    
+    public float Speed => _speed;
+    public float FireRate => _fireRate;
 
     public static event Action<Bullet> OnBulletHit;
 
