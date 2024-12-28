@@ -21,16 +21,13 @@ public abstract class ShooterController
 
     public virtual void CountFireTimer()
     {
-        if (_nextFire == 0)
+        if (_nextFire <= 0)
             return;
 
         _nextFire -= Time.fixedDeltaTime;
-
-        if (_nextFire < 0)
-            _nextFire = 0;
     }
 
-    protected virtual void Shoot()
+    public virtual void Shoot()
     {
         if (_nextFire > 0f)
             return;

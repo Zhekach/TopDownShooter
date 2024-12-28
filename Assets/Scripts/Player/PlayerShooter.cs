@@ -9,7 +9,7 @@ namespace Player
             GameObject bulletPrefab, GameObject firePoint 
         ) : base(parent, bulletPrefab, firePoint){}
         
-        protected override void Shoot()
+        public override void Shoot()
         {
             if (Mathf.Approximately(Input.GetAxis("Fire1"), 1))
             {
