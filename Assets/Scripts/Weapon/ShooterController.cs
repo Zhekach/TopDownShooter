@@ -2,8 +2,8 @@
 
 public abstract class ShooterController
 {
+    protected GameObject _firePoint;
     private GameObject _bulletPrefab;
-    private GameObject _firePoint;
     private GameObject _parent;
     
     private float _bulletSpeed;
