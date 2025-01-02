@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 1108578902475370435}
   - component: {fileID: 4666985004817621312}
   - component: {fileID: 6864900601643257356}
-  - component: {fileID: 3202259374786232609}
   - component: {fileID: 1767806949889440192}
   - component: {fileID: 2087997309207248146}
   m_Layer: 0
@@ -136,23 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  _speed: 5
---- !u!114 &3202259374786232609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7037898123203779824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c88568e8c734ea39088dca7d1ee1446, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 4492918351021138168, guid: 95ff5e326bae05a4c9fa3e861d7ccd7c, type: 3}
   _firePoint: {fileID: 4154874234514445219}
-  _bulletSpeed: 10
-  _fireRate: 0.5
+  _speed: 5
 --- !u!50 &1767806949889440192
 Rigidbody2D:
   serializedVersion: 5

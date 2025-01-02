@@ -2,13 +2,13 @@
 
 public abstract class ShooterController
 {
+    protected GameObject _firePoint;
     private GameObject _bulletPrefab;
-    private GameObject _firePoint;
     private GameObject _parent;
     
-    private float _bulletSpeed = 20f;
-    private float _fireRate = 0.1f;
-
+    private float _bulletSpeed;
+    private float _fireRate;
+    
     private float _nextFire;
     
     public ShooterController(GameObject bulletPrefab, GameObject firePoint, GameObject parent)
@@ -16,25 +16,21 @@ public abstract class ShooterController
         _bulletPrefab = bulletPrefab;
         _firePoint = firePoint;
         _parent = parent;
-    }
-
-    private void Awake()
-    {
         _nextFire = _fireRate;
+        var bullet = _bulletPrefab.GetComponent<Bullet>();
+        _bulletSpeed = bullet.Speed;
+        _fireRate = bullet.FireRate;
     }
 
     public virtual void CountFireTimer()
     {
-        if (_nextFire == 0)
+        if (_nextFire <= 0)
             return;
 
         _nextFire -= Time.fixedDeltaTime;
-
-        if (_nextFire < 0)
-            _nextFire = 0;
     }
 
-    protected void Shoot()
+    public virtual void Shoot()
     {
         if (_nextFire > 0f)
             return;
@@ -49,7 +45,5 @@ public abstract class ShooterController
             Mathf.Sin((_parent.transform.eulerAngles.z + 90) * Mathf.Deg2Rad));
 
         bullet.GetComponent<Rigidbody2D>().linearVelocity = direction * _bulletSpeed;
-
-        Object.Destroy(bullet, 5f);
     }
 }

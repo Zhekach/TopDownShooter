@@ -1,12 +1,17 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Bullet : MonoBehaviour
 {
     public BulletBrokerType DestinationType { get; private set; }
 
-    private int _maxRicochets = 2;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _fireRate;
+    
+    public float Speed => _speed;
+    public float FireRate => _fireRate;
 
     public static event Action<Bullet> OnBulletHit;
 
@@ -23,6 +28,9 @@ public class Bullet : MonoBehaviour
             case nameof(BulletBrokerType.Barrier):
                 HandleRicochet(collision);
                 break;
+            case nameof(BulletBrokerType.Border):
+                Destroy(gameObject);
+                break;
         }
     }
 
@@ -34,11 +42,6 @@ public class Bullet : MonoBehaviour
 
     private void HandleRicochet(Collision2D collision)
     {
-        if (_maxRicochets <= 0)
-            return;
-
-        _maxRicochets--;
-
         var rigidbody = GetComponent<Rigidbody2D>();
         var direction = rigidbody.linearVelocity;
         var normal = collision.GetContact(0).normal;
@@ -52,5 +55,6 @@ public enum BulletBrokerType
 {
     Player,
     Enemy,
-    Barrier
+    Barrier, 
+    Border
 }

@@ -1,4 +1,5 @@
 ﻿using Enemy;
+using Player;
 using UnityEngine;
 
 namespace Map
@@ -17,21 +18,30 @@ namespace Map
 
         private void OnEnable()
         {
-            Bullet.OnBulletHit += SpawnMap;
+            Bullet.OnBulletHit += RespawnMap;
         }
 
         private void OnDisable()
         {
-            Bullet.OnBulletHit -= SpawnMap;
+            Bullet.OnBulletHit -= RespawnMap;
         }
 
-        private void SpawnMap(Bullet bullet = null)
+        private void SpawnMap()
         {
             _player = _playerSpawner.Spawn();
             _enemy = _enemySpawner.Spawn();
             
+            var playerController = _player.GetComponent<PlayerController>();
+            playerController.Initialize();
+            
             var enemyController = _enemy.GetComponent<EnemyController>();
             enemyController.Initialize(_player);
+        }
+
+        private void RespawnMap(Bullet bullet = null)
+        {
+            _player.transform.position = _playerSpawner.transform.position;
+            _enemy.transform.position = _enemySpawner.transform.position;
         }
     }
 }

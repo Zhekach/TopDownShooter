@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3744575210772850157}
+  - component: {fileID: 177775193720568629}
   - component: {fileID: 6042783269956000304}
-  - component: {fileID: 3659529104191125839}
-  - component: {fileID: 2426170922747553238}
   - component: {fileID: 3224459164111681878}
   - component: {fileID: 279390715060700629}
   m_Layer: 0
@@ -37,6 +36,21 @@ Transform:
   - {fileID: 6424283807626427911}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &177775193720568629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527708444736138098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79f85fac31f49e8b104bccb31b19f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 4492918351021138168, guid: 95ff5e326bae05a4c9fa3e861d7ccd7c, type: 3}
+  _firePoint: {fileID: 7076856709758302826}
+  _movementSpeed: 5
 --- !u!212 &6042783269956000304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92,35 +106,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3659529104191125839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6527708444736138098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8399906bb13dab488861a4ad6ee0d43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
---- !u!114 &2426170922747553238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6527708444736138098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1576f2a257f8b549b747f6e5903d16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 4492918351021138168, guid: 95ff5e326bae05a4c9fa3e861d7ccd7c, type: 3}
-  _firePoint: {fileID: 7076856709758302826}
-  _bulletSpeed: 10
-  _fireRate: 0.2
 --- !u!50 &3224459164111681878
 Rigidbody2D:
   serializedVersion: 5

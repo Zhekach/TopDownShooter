@@ -10,11 +10,11 @@ namespace Enemy
         
         private float _speed;
 
-        public EnemyMovement(GameObject player, GameObject enemy, float speed)
+        public EnemyMovement(GameObject player, GameObject parent, float speed)
         {
             _player = player;
-            _rigidbody = enemy.GetComponent<Rigidbody2D>();
-            _transform = enemy.transform;
+            _rigidbody = parent.GetComponent<Rigidbody2D>();
+            _transform = parent.transform;
             _speed = speed;
         }
 
